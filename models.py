@@ -14,22 +14,19 @@ class Course(Model):
 	slug = CharField( unique = True, max_length = 250)
 	description = TextField()
 	created_at = DateTimeField(default= datetime.datetime.now)
-	released = BooleanField(default=True)
 
 	def to_json(self):
 		return {'id': self.id, 'title': self.title, 'slug': self.slug, 'description': self.description }
 
 	@classmethod
 	def new(cls, title, slug, description):
-		return cls.create( title = title, slug = slug, description = description )
-		
+		try:
+			return cls.create( title = title, slug = slug, description = description )
+ 		except IntegrityError:
+ 			return None
 
 def initialize():
-	"""Called when the program starts if not called as an imported module."""
 	DATABASE.connect()
 	DATABASE.create_tables([Course], safe=True)
 	DATABASE.close()
 
-def insert():
-	first_course = Course(title='Curso Python3', slug = 'python3', description= 'Este es en nuevo curso de Python 3')
-	first_course.save()

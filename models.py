@@ -7,7 +7,7 @@ DATABASE = MySQLDatabase('API', host='localhost', user='root', passwd='')
 class Course(Model):
 	class Meta:
 		database = DATABASE
-		#order_by = ('-created_at',)
+		order_by = ('-created_at',)
 		db_table = 'courses'
 
 	title = CharField( unique = True, max_length = 250)
@@ -16,11 +16,13 @@ class Course(Model):
 	created_at = DateTimeField(default= datetime.datetime.now)
 	released = BooleanField(default=True)
 
+	def to_json(self):
+		return {'id': self.id, 'title': self.title, 'slug': self.slug, 'description': self.description }
+
 def initialize():
 	"""Called when the program starts if not called as an imported module."""
 	DATABASE.connect()
 	DATABASE.create_tables([Course], safe=True)
-	#insert()
 	DATABASE.close()
 
 def insert():

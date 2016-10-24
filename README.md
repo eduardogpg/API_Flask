@@ -16,17 +16,17 @@ If you want change the db engie you needs to modify the models.py file.
 Install Libraries
 
 ```Python
-$ pip install Flask
+pip install Flask
 ```
 
 Install Pewwee
 
 ```Python
- $pip install peewee
+pip install peewee
 ```
 
 ```Python
-$ Python manage.py
+Python manage.py
 ```
 
 ### Methods

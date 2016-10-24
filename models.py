@@ -19,6 +19,11 @@ class Course(Model):
 	def to_json(self):
 		return {'id': self.id, 'title': self.title, 'slug': self.slug, 'description': self.description }
 
+	@classmethod
+	def new(cls, title, slug, description):
+		return cls.create( title = title, slug = slug, description = description )
+		
+
 def initialize():
 	"""Called when the program starts if not called as an imported module."""
 	DATABASE.connect()

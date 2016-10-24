@@ -24,7 +24,7 @@ def after_request(response):
 
 @app.errorhandler(404)
 def not_found(error):
-	return make_response( jsonify({'error': 'Not found'} ), 404)
+	return jsonify( generate_response(400, error = 'Not found!' ) )
 
 @app.route('/codigo/api/v1.0/courses/', methods=['GET'])
 def get_tasks():
@@ -38,10 +38,10 @@ def get_task(course_id):
 		course = Course.get(Course.id == course_id)
 	except Course.DoesNotExist:
 		abort(404)
-	return jsonify( generate_response(course.to_json() ) )
+	return jsonify( generate_response(data = course.to_json() ) )
 
-def generate_response(data = None):
-	return { 'data': data }
+def generate_response(status = 200 , data = None, error = None):
+	return { 'status': status, 'data': data, 'error': error}
 
 
 if __name__ == '__main__':

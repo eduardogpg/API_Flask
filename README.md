@@ -19,15 +19,20 @@ Install Libraries
 pip install Flask
 ```
 
-Install Pewwee
+Install Pewee
 
 ```Python
 pip install peewee
 ```
 
+Execute Server
+
 ```Python
 Python manage.py
 ```
+
+This line execute the Flask sever, by defult this server run in the por 8000.
+If you need change the port you needs to modify the config file.
 
 ### Methods
 

@@ -9,6 +9,8 @@ import models
 from models import Course
 
 app = Flask(__name__)
+PORT = 8000
+DEBUG = True
 
 @app.before_request
 def before_request():
@@ -47,7 +49,7 @@ def get_task(course_id):
 def get_course():
 	if not request.json:
 		abort(400)
-	
+
 	course = Course.new(title = request.json.get('title', ""), slug = request.json.get('slug', ""), description = request.json.get('description', "") )
 	if course is None:
 		abort(422)
@@ -86,6 +88,6 @@ def get_course(course_id):
 
 if __name__ == '__main__':
 	models.initialize()
-	app.run(port=8000, debug=True)
+	app.run(port = PORT, debug = DEBUG)
 
 

@@ -6,7 +6,7 @@ Technologies :
     
   - Python 2.7
   - Flask
-  - Pewee ORM
+  - Peewee ORM
 
 Is necessary that you have install MYSQL.
 If you want change the db engie you needs to modify the models.py file.
@@ -19,7 +19,7 @@ Install Libraries
 pip install Flask
 ```
 
-Install Pewee
+Install peewee
 
 ```Python
 pip install peewee

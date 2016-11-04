@@ -25,13 +25,19 @@ Install peewee
 pip install peewee
 ```
 
+Install OAuthlib
+
+```Python
+pip install Flask-OAuthlib
+```
+
 Execute Server
 
 ```Python
 Python manage.py
 ```
 
-This line execute the Flask sever, by defult this server run in the por 8000.
+Ths line execute the Flask sever, by defult this server run in the por 8000.
 If you need change the port you needs to modify the config file.
 
 ### Methods

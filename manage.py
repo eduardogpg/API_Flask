@@ -4,11 +4,14 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import make_response
+from flask_oauthlib.provider import OAuth2Provider
 
 import models
 from models import Course
 
 app = Flask(__name__)
+oauth = OAuth2Provider()
+
 PORT = 8000
 DEBUG = True
 HOST = '0.0.0.0'
@@ -89,5 +92,6 @@ def get_course(course_id):
 
 if __name__ == '__main__':
 	models.initialize()
+	oauth.init_app(app)
 	app.run(port = PORT, debug = DEBUG, host = HOST)
 

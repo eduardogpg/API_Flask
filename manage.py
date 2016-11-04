@@ -11,6 +11,7 @@ from models import Course
 app = Flask(__name__)
 PORT = 8000
 DEBUG = True
+HOST = '0.0.0.0'
 
 @app.before_request
 def before_request():
@@ -41,16 +42,16 @@ def get_courses():
 	return jsonify( generate_response( data = courses ) )
 
 @app.route('/codigo/api/v1.0/courses/<int:course_id>', methods=['GET'])
-def get_task(course_id):
+def get_course(course_id):
 	course = get_course(course_id)
 	return jsonify( generate_response(data = course.to_json() ) )
 
 @app.route('/codigo/api/v1.0/courses/', methods=['POST'])
-def get_course():
+def post_course():
 	if not request.json:
 		abort(400)
-
-	course = Course.new(title = request.json.get('title', ""), slug = request.json.get('slug', ""), description = request.json.get('description', "") )
+	course = Course.new(title = request.json.get('title', ""), slug = request.json.get('slug', ""),
+											description = request.json.get('description', "") )
 	if course is None:
 		abort(422)
 	return jsonify( generate_response(data = course.to_json() ) )	
@@ -88,6 +89,5 @@ def get_course(course_id):
 
 if __name__ == '__main__':
 	models.initialize()
-	app.run(port = PORT, debug = DEBUG)
-
+	app.run(port = PORT, debug = DEBUG, host = HOST)
 

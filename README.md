@@ -38,6 +38,10 @@ If you need change the port you needs to modify the config file.
 
 -	GET
 ```Python
+curl http://localhost:8000/codigo/api/v1.0/courses/
+```
+-	GET
+```Python
 curl -i http://localhost:8000/codigo/api/v1.0/courses/1
 ```
 
@@ -48,7 +52,7 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"title":"New Course", "
 
 -	PUT
 ```Python
-curl -i -H "Content-Type: application/json" -X PUT -d '{"title":"new title", "slug": "new_title", "description": "change the description"}' http://localhost:8000/codigo/api/v1.0/courses/1
+curl -i -H "Content-Type: application/json" -X PUT -d '{"title":"update title", "slug": "update_title", "description": "update description"}' http://localhost:8000/codigo/api/v1.0/courses/1
 ```
 
 -	DElETE

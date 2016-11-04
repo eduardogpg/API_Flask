@@ -1,5 +1,7 @@
-import datetime
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
 
+import datetime
 from peewee import *
 
 DATABASE = MySQLDatabase('API', host='localhost', user='root', passwd='')
@@ -7,7 +9,7 @@ DATABASE = MySQLDatabase('API', host='localhost', user='root', passwd='')
 class Course(Model):
 	class Meta:
 		database = DATABASE
-		order_by = ('-created_at',)
+		order_by = ('created_at',)
 		db_table = 'courses'
 
 	title = CharField( unique = True, max_length = 250)
@@ -25,8 +27,17 @@ class Course(Model):
  		except IntegrityError:
  			return None
 
+def create_courses():
+	title = 'Curso de Flask'
+	slug = 'flask'
+	description = 'Descripción del curso de Flask'
+
+	if not Course.select().where(Course.slug == slug):
+		Course.create(title = title, slug = slug, description = description )
+
 def initialize():
 	DATABASE.connect()
-	DATABASE.create_tables([Course], safe=True)
+	DATABASE.create_tables([Course], safe=True)	
+	create_courses()
 	DATABASE.close()
 

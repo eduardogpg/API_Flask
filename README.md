@@ -61,7 +61,7 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"title":"New Course", "
 curl -i -H "Content-Type: application/json" -X PUT -d '{"title":"update title", "slug": "update_title", "description": "update description"}' http://localhost:8000/codigo/api/v1.0/courses/1
 ```
 
--	DElETE
+-	DELETE
 ```Python
 curl -X DELETE http://localhost:8000/codigo/api/v1.0/courses/1
 ```
